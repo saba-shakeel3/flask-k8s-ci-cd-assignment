@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 Flask
+=======
+Flask==2.3.2
+>>>>>>> 634378baf27761598eb38ad38c80bc8a3e2a395b
 flake8
 pytest

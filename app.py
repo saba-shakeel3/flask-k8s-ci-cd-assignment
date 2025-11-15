@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # app.py
 
 from flask import Flask
@@ -20,3 +21,15 @@ if __name__ == "__main__":
     # In a real app, do not run with debug=True in production.
     # We use 0.0.0.0 for Docker compatibility.
     app.run(host='0.0.0.0', port=5000, debug=True)
+=======
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello, World! Flask CI/CD Assignment"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+>>>>>>> 634378baf27761598eb38ad38c80bc8a3e2a395b
