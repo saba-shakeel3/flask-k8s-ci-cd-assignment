@@ -2,6 +2,7 @@
 
 from app import create_message
 
+
 def test_create_message_output():
     """
     Tests the output of the simple function to meet the unit test requirement.
