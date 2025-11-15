@@ -13,10 +13,12 @@ def create_message():
 # Initialize the Flask application
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello_world():
     """Main route that returns a greeting message."""
     return create_message()
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
