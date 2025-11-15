@@ -1,0 +1,47 @@
+name: CI Pipeline
+
+on:
+  # Triggers when code is pushed to any branch
+  push:
+    branches: ["*"]
+  
+  # CRITICAL: Triggers when a Pull Request is opened, updated, or reopened.
+  # This is usually what adds the "Checks" status to the PR page itself.
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: ["*"]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          # Use a specific Python version for consistency
+          python-version: "3.10"
+
+      - name: Install dependencies and tools
+        # Ensure pytest and flake8 are installed along with Flask
+        run: |
+          pip install -r requirements.txt
+          pip install flake8 pytest 
+
+      - name: Run flake8 linting
+        # Enforces the 90-character line length limit as required by Task 2
+        run: |
+          flake8 --max-line-length=90 .
+
+      - name: Run Pytest
+        # Runs all tests in the repository
+        run: |
+          pytest -q
+
+      - name: Build Docker Image
+        # Builds the application image, confirming the Dockerfile is valid
+        run: |
+          docker build -t flask-app:ci .
